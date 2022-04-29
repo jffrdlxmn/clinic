@@ -236,7 +236,7 @@ $(document).on("click", "#updateStatus", function() {
           })
           swalWithBootstrapButtons.fire({
           title: 'Are you sure?',
-          text: "you want to add this data?",
+          text: "you want to update this data?",
           icon: 'question',
           showCancelButton: true,
           confirmButtonText: 'Confirm',
@@ -288,7 +288,7 @@ function Delete(id)
     })
     swalWithBootstrapButtons.fire({
     title: 'Are you sure?',
-    text: "you want to add this data?",
+    text: "you want to delete this data?",
     icon: 'question',
     showCancelButton: true,
     confirmButtonText: 'Confirm',

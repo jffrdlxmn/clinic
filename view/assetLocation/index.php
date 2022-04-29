@@ -52,15 +52,15 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Asset Type</h1>
-        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Condition</button>
+        <h1 class="text-success text-center">Asset Location</h1>
+        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Location</button>
 
         <!-- DATA TABLE -->
-            <div id="typeFetch"></div>
+            <div id="locationFetch"></div>
         <!-- END DATA TABLE -->
 
         <!-- MODALS -->
-        <?php include('../../modals/assetTypeModal.php'); ?>
+        <?php include('../../modals/assetLocationModal.php'); ?>
         <!-- END MODALS -->
         
        
@@ -121,7 +121,7 @@
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
 
 <script>
- jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+ jQuery('#locationFetch').load('fetch.php', 'f' + (Math.random()*100000));
 </script>
 
 <script>
@@ -132,16 +132,16 @@
     addModal.style.display = "block";
   }
 
-  $(document).on("click", "#addType", function() { 
+  $(document).on("click", "#addLocation", function() { 
   $.ajax({
       url: "checkExist.php",
       type: "POST",
       cache: false,
       data:{
-        typeName: $('#addTypeName').val(),
+        locationName: $('#addLocationName').val(),
       },
-      success: function(typeCheckData){
-          if(typeCheckData == 1)
+      success: function(LocationCheckData){
+          if(LocationCheckData == 1)
           {
             warningfunction('Already exist!');   
           }
@@ -168,14 +168,14 @@
                     type: "POST",
                     cache: false,
                     data:{
-                      typeName: $('#addTypeName').val(),
+                      locationName: $('#addLocationName').val(),
                     },
                     success: function(data){
                         if(data == 1)
                         {
                             success('Data Added successfully!');
                             addModal.style.display = "none";
-                            jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                            jQuery('#locationFetch').load('fetch.php', 'f' + (Math.random()*100000));
 
                         }
                         else{
@@ -198,15 +198,15 @@ var updateModal = document.getElementById("updateModal");
 function openUpdateModal(id,name)
 {
   updateModal.style.display = "block";
-  document.getElementById("updateTypeId").value=id;
-  document.getElementById("updateTypeName").value=name;
-  document.getElementById("originalTypeName").value=name;
+  document.getElementById("updateLocationId").value=id;
+  document.getElementById("updateLocationName").value=name;
+  document.getElementById("originalLocationName").value=name;
 
 }
 
-$(document).on("click", "#updateCondition", function() { 
+$(document).on("click", "#updateLocation", function() { 
 
-  if($('#updateTypeName').val() == $('#originalTypeName').val())
+  if($('#updateLocationName').val() == $('#originalLocationName').val())
   {
     warningfunction('No changes!');
     return false;
@@ -217,10 +217,10 @@ $(document).on("click", "#updateCondition", function() {
       type: "POST",
       cache: false,
       data:{
-        typeName: $('#updateTypeName').val(),
+        locationName: $('#updateLocationName').val(),
       },
-      success: function(typeCheckData){
-        if(typeCheckData == 1)
+      success: function(locationCheckData){
+        if(locationCheckData == 1)
         {
           warningfunction('Already exist!');   
         }
@@ -247,15 +247,15 @@ $(document).on("click", "#updateCondition", function() {
                   type: "POST",
                   cache: false,
                   data:{
-                    typeId: $('#updateTypeId').val(),
-                    typeName: $('#updateTypeName').val()
+                    locationId: $('#updateLocationId').val(),
+                    locationName: $('#updateLocationName').val()
                   },
                   success: function(data){
                       if(data == 1)
                       {
                           success('Data updated successfully!');
                           updateModal.style.display = "none";
-                          jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                          jQuery('#locationFetch').load('fetch.php', 'f' + (Math.random()*100000));
                       }
                       else{
                           alert(data);
@@ -298,13 +298,13 @@ function Delete(id)
             type: "POST",
             cache: false,
             data:{
-              typeId: id,
+              locationId: id,
             },
             success: function(data){
                 if(data == 1)
                 {
                   success('Data Deleted successfully!');
-                  jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                  jQuery('#locationFetch').load('fetch.php', 'f' + (Math.random()*100000));
                 }
                 else{
                     alert(data);
