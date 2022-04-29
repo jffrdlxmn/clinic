@@ -52,15 +52,15 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Asset Status</h1>
-        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Status</button>
+        <h1 class="text-success text-center">Asset Condition</h1>
+        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Condition</button>
 
         <!-- DATA TABLE -->
-            <div id="statusFetch"></div>
+            <div id="conditionFetch"></div>
         <!-- END DATA TABLE -->
 
         <!-- MODALS -->
-        <?php include('../../modals/assetStatusmodal.php'); ?>
+        <?php include('../../modals/assetConditionmodal.php'); ?>
         <!-- END MODALS -->
         
        
@@ -121,7 +121,7 @@
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
 
 <script>
- jQuery('#statusFetch').load('fetch.php', 'f' + (Math.random()*100000));
+ jQuery('#conditionFetch').load('fetch.php', 'f' + (Math.random()*100000));
 </script>
 
 <script>
@@ -132,21 +132,20 @@
     addModal.style.display = "block";
   }
 
-  $(document).on("click", "#addStatus", function() { 
+  $(document).on("click", "#addCondition", function() { 
   $.ajax({
       url: "checkExist.php",
       type: "POST",
       cache: false,
       data:{
-        statusName: $('#addStatusName').val(),
+        conditionName: $('#addConditionName').val(),
       },
-      success: function(statusCheckData){
-          if(statusCheckData == 1)
+      success: function(conditionCheckData){
+          if(conditionCheckData == 1)
           {
             warningfunction('Already exist!');   
           }
           else{
-        
             const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success m-1 ',
@@ -169,7 +168,7 @@
                     type: "POST",
                     cache: false,
                     data:{
-                      statusName: $('#addStatusName').val(),
+                      conditionName: $('#addConditionName').val(),
                
                     },
                     success: function(data){
@@ -177,7 +176,7 @@
                         {
                             success('Data Added successfully!');
                             addModal.style.display = "none";
-                            jQuery('#statusFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                            jQuery('#conditionFetch').load('fetch.php', 'f' + (Math.random()*100000));
 
                         }
                         else{
@@ -200,15 +199,15 @@ var updateModal = document.getElementById("updateModal");
 function openUpdateModal(id,name)
 {
   updateModal.style.display = "block";
-  document.getElementById("updateStatusId").value=id;
-  document.getElementById("updateStatusName").value=name;
-  document.getElementById("originalStatusName").value=name;
+  document.getElementById("updateConditionId").value=id;
+  document.getElementById("updateConditionName").value=name;
+  document.getElementById("originalConditionName").value=name;
 
 }
 
-$(document).on("click", "#updateStatus", function() { 
+$(document).on("click", "#updateCondition", function() { 
 
-  if($('#updateStatusName').val() == $('#originalStatusName').val())
+  if($('#updateConditionName').val() == $('#originalConditionName').val())
   {
     warningfunction('No changes!');
     return false;
@@ -219,10 +218,10 @@ $(document).on("click", "#updateStatus", function() {
       type: "POST",
       cache: false,
       data:{
-        statusName: $('#updateStatusName').val(),
+        conditionName: $('#updateConditionName').val(),
       },
-      success: function(statusCheckData){
-        if(statusCheckData == 1)
+      success: function(typeCheckData){
+        if(typeCheckData == 1)
         {
           warningfunction('Already exist!');   
         }
@@ -249,16 +248,15 @@ $(document).on("click", "#updateStatus", function() {
                   type: "POST",
                   cache: false,
                   data:{
-                    statusId: $('#updateStatusId').val(),
-                    statusName: $('#updateStatusName').val()
+                    conditionId: $('#updateConditionId').val(),
+                    conditionName: $('#updateConditionName').val()
                   },
                   success: function(data){
                       if(data == 1)
                       {
                           success('Data updated successfully!');
                           updateModal.style.display = "none";
-                          jQuery('#statusFetch').load('fetch.php', 'f' + (Math.random()*100000));
-
+                          jQuery('#conditionFetch').load('fetch.php', 'f' + (Math.random()*100000));
                       }
                       else{
                           alert(data);
@@ -301,13 +299,13 @@ function Delete(id)
             type: "POST",
             cache: false,
             data:{
-              statusId: id,
+              conditionId: id,
             },
             success: function(data){
                 if(data == 1)
                 {
-                    success('Data Deleted successfully!');
-                    jQuery('#statusFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                  success('Data Deleted successfully!');
+                  jQuery('#conditionFetch').load('fetch.php', 'f' + (Math.random()*100000));
                 }
                 else{
                     alert(data);
