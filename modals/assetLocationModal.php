@@ -8,7 +8,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Status</label>
+						<label>Location</label>
 						<input id="addLocationName" name="addLocationName" type="text" class="form-control mb-1">
 					</div>
 					
@@ -32,7 +32,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Status</label>
+						<label>Location</label>
 						<input hidden id="updateLocationId" name="updateLocationId" type="text" class="form-control mb-1">
 						<input hidden id="originalLocationName" name="originalLocationName" type="text" class="form-control mb-1">
 						<input id="updateLocationName" name="updateLocationName" type="text" class="form-control mb-1">

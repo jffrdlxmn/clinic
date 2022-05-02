@@ -8,7 +8,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Condition</label>
+						<label>Type</label>
 						<input id="addTypeName" name="addTypeName" type="text" class="form-control mb-1">
 					</div>
 					
@@ -32,7 +32,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Condition</label>
+						<label>Type</label>
 						<input hidden id="updateTypeId" name="updatetypeId" type="text" class="form-control mb-1">
 						<input hidden id="originalTypeName" name="originalTypeName" type="text" class="form-control mb-1">
 						<input id="updateTypeName" name="updateTypeName" type="text" class="form-control mb-1">
