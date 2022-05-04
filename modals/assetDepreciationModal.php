@@ -45,6 +45,7 @@
 
 						<label>Reducing Balance Rate
 						<input id="updateDepreciationRBR" name="updateDepreciationRBR" type="number" class="form-control w-100">
+						<input hidden id="originalDepreciationRBR" name="originalDepreciationRBR" type="number" class="form-control w-100">
 						</label>
 						<b> % Annually</b>
 

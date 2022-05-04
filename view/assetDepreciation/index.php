@@ -142,8 +142,6 @@
         rbr: $('#addDepreciationRBR').val(),
       },
       success: function(depreciationCheckData){
-          alert(depreciationCheckData);
-          return false;
           if(depreciationCheckData == 1)
           {
             warningfunction('Already exist!');   
@@ -171,9 +169,10 @@
                     type: "POST",
                     cache: false,
                     data:{
-                      typeName: $('#addDepreciationName').val(),
+                      description: $('#addDepreciationDescription').val(),
+                      rbr: $('#addDepreciationRBR').val(),
                     },
-                    success: function(data){
+                    success: function(data){  
                         if(data == 1)
                         {
                             success('Data Added successfully!');
@@ -198,18 +197,22 @@
 
 
 var updateModal = document.getElementById("updateModal");
-function openUpdateModal(id,name)
+function openUpdateModal(id,description,rbr)
 {
   updateModal.style.display = "block";
-  document.getElementById("updateTypeId").value=id;
-  document.getElementById("updateTypeName").value=name;
-  document.getElementById("originalTypeName").value=name;
+  document.getElementById("updateDepreciationId").value=id;
+  document.getElementById("updateDepreciationDescription").value=description;
+  document.getElementById("originalDepreciationDescription").value=description;
+  document.getElementById("updateDepreciationRBR").value=rbr;
+  document.getElementById("originalDepreciationRBR").value=rbr;
+
 
 }
 
-$(document).on("click", "#updateCondition", function() { 
+$(document).on("click", "#updateDepreciation", function() { 
 
-  if($('#updateTypeName').val() == $('#originalTypeName').val())
+  if($('#updateDepreciationDescription').val() == $('#originalDepreciationDescription').val() 
+  && $('#updateDepreciationRBR').val() == $('#originalDepreciationRBR').val() )
   {
     warningfunction('No changes!');
     return false;
@@ -220,10 +223,11 @@ $(document).on("click", "#updateCondition", function() {
       type: "POST",
       cache: false,
       data:{
-        typeName: $('#updateTypeName').val(),
+        description: $('#updateDepreciationDescription').val(),
+        rbr: $('#updateDepreciationRBR').val(),
       },
-      success: function(typeCheckData){
-        if(typeCheckData == 1)
+      success: function(depreciationCheckData){
+        if(depreciationCheckData == 1)
         {
           warningfunction('Already exist!');   
         }
@@ -250,15 +254,16 @@ $(document).on("click", "#updateCondition", function() {
                   type: "POST",
                   cache: false,
                   data:{
-                    typeId: $('#updateTypeId').val(),
-                    typeName: $('#updateTypeName').val()
+                    id: $('#updateDepreciationId').val(),
+                    description: $('#updateDepreciationDescription').val(),
+                    rbr: $('#updateDepreciationRBR').val(),
                   },
                   success: function(data){
                       if(data == 1)
                       {
                           success('Data updated successfully!');
                           updateModal.style.display = "none";
-                          jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                          jQuery('#depreciationFetch').load('fetch.php', 'f' + (Math.random()*100000));
                       }
                       else{
                           alert(data);
@@ -301,13 +306,13 @@ function Delete(id)
             type: "POST",
             cache: false,
             data:{
-              typeId: id,
+              depreciationId: id,
             },
             success: function(data){
                 if(data == 1)
                 {
                   success('Data Deleted successfully!');
-                  jQuery('#typeFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                  jQuery('#depreciationFetch').load('fetch.php', 'f' + (Math.random()*100000));
                 }
                 else{
                     alert(data);

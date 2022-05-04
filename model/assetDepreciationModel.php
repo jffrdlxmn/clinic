@@ -22,11 +22,14 @@
         
 		function checkExist($description,$rbr)
 		{
-			if($rbr == "") echo "alert('test')";
+			
 			$data=array();
-            $sql = "SELECT * FROM asset_depreciation WHERE `description`=?  AND rbr =?";
+			if($rbr == "") $rbr = 0;
+			$sql = "SELECT * FROM asset_depreciation WHERE `description`=?  AND rbr =?";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute(array($description, $rbr));
+		
+
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
 			if($data>0) return "1";
             else return "0"; 
@@ -45,38 +48,43 @@
 
       
 
-        function save($conditionName){
+        function save($description,$rbr){
+			
+			if($rbr == "")  $rbr =0; 
 			$addData=[];
 			$addData=[
-				'conditionName'=>$conditionName,
+				'description'=>$description,
+				'rbr'=>$rbr
+
 			];
-            $sql = "INSERT INTO asset_condition(`condition`) 
-			VALUES (:conditionName)";
+            $sql = "INSERT INTO asset_depreciation(`description`,`rbr`) 
+			VALUES (:description,:rbr)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
 			if($stmt) return 1;
 			else return 0;
 		}
 
-		function update($conditionId,$conditionName){
+		function update($depreciationId,$description,$rbr){
             $updateData=[];
 			$updateData=[
-				'conditionId'=>$conditionId,
-				'conditionName'=>$conditionName
+				'depreciationId'=>$depreciationId,
+				'description'=>$description,
+				'rbr'=>$rbr
 			];
-			$sql = "UPDATE asset_condition SET `condition`=:conditionName
-			WHERE `id`=:conditionId";
+			$sql = "UPDATE asset_depreciation SET `description`=:description,`rbr`=:rbr
+			WHERE `id`=:depreciationId";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($updateData);
 			if($stmt) return 1;
 			else return 0;
 		}
 
-		function delete($conditionId)
+		function delete($depreciationId)
 		{
-			$sql = "DELETE FROM asset_condition WHERE `id`=?";
+			$sql = "DELETE FROM asset_depreciation WHERE `id`=?";
 			$stmt = $this->db->prepare($sql);
-			$stmt->execute([$conditionId]);
+			$stmt->execute([$depreciationId]);
 			if($stmt) return 1;
 			else return 0;
 		}
