@@ -84,6 +84,58 @@
 			if($stmt) return 1;
 			else return 0;
 		}
+
+
+		function login($username,$password)
+		{
+
+			$password = md5($password);
+
+			$usernamedata=array();
+			$usernameSql = "SELECT * FROM users WHERE `username`=? ";
+			$usernameStmt = $this->db->prepare($usernameSql);
+			$usernameStmt->execute(array($username));
+            $usernamedata = $usernameStmt->fetch(PDO::FETCH_ASSOC);
+
+			if($usernamedata>0)
+			{
+				$loginSql = "SELECT * FROM users WHERE `username`=? AND `password`=? ";
+				$loginStmt = $this->db->prepare($loginSql);
+				$loginStmt->execute(array($username,$password));
+				$logindata = $loginStmt->fetch(PDO::FETCH_ASSOC);
+
+				if($logindata > 0)
+				{
+					if($username == $logindata["username"])
+					{
+					
+						if($password == $logindata["password"])
+						{
+							$_SESSION["id"] = $logindata["id"];
+							$_SESSION["username"] = $logindata["username"];
+							echo "1";
+						}
+						else{
+							echo "Wrong password";
+						}
+					}
+					else
+					{
+					return "Invalid Username";
+					}
+				}
+				else{
+					return  "Username and Password doest not match!";
+				}
+
+			}
+			else{
+                return  "Username does not exist!";
+            }
+			
+       
+			
+		}
         
 	}	
 ?>

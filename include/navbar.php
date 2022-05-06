@@ -14,7 +14,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-m dropdown-menu-right  border-success p-2 ">
-          <a href="logout.php" class="dropdown-item text-success" >
+          <a href="../../views/auth/logout.php" class="dropdown-item text-success" >
             <i class="fas fa-sign-out-alt "></i> Sign out
             
           </a>  
