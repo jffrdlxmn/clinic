@@ -1,6 +1,6 @@
 <?php
-    include('../../model/personelTitleModel.php');
-    $title = new personelTitle();
+    include('../../model/personnelTitleModel.php');
+    $title = new personnelTitle();;
     
     if(isset($_POST['titleId']))
     {

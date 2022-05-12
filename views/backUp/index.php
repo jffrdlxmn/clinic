@@ -34,10 +34,10 @@ if(isset($_POST['table']))
    $output .= "'" . implode("','", $table_value_array) . "');\n";
   }
  }
- $path ="/htdocs/supply";
+
  $file_name = 'database_backup_on_' . date('y-m-d') . '.sql';
 
- $file_handle = fopen($path . '/' .$file_name, 'w+');
+ $file_handle = fopen($file_name, 'w+');
  fwrite($file_handle, $output);
  fclose($file_handle);
  header('Content-Description: File Transfer');

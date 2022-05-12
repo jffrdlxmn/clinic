@@ -54,15 +54,15 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Personel Title</h1>
-        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Personal Title</button>
+        <h1 class="text-success text-center">Personnel Title</h1>
+        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Personnel Title</button>
 
         <!-- DATA TABLE -->
             <div id="titleFetch"></div>
         <!-- END DATA TABLE -->
 
         <!-- MODALS -->
-        <?php include('../../modals/personelTitleModal.php'); ?>
+        <?php include('../../modals/personnelTitleModal.php'); ?>
         <!-- END MODALS -->
         
        

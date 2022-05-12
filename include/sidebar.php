@@ -20,17 +20,25 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <li class="nav-item">
-            <a href="../../views/" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
+          
 
           <li class="nav-item">
             <a href="../../views/user/" class="nav-link">
               <i class="nav-icon fas fa-hand-holding-usd"></i>
               <p>Asset</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../../views/personnel/" class="nav-link">
+              <i class="nav-icon fa fa-group"></i>
+              <p>Personnel</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../../views/personnel/" class="nav-link">
+              <i class="nav-icon fa fa-truck"></i>
+              <p>Vendor</p>
             </a>
           </li>
 
@@ -70,51 +78,51 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../../views/user/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="fa fa-user nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../views/assetDepreciation/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="fas fa-sort-down nav-icon"></i>
                   <p>Asset Depreciation</p>
                 </a>
               </li>
               
               <li class="nav-item">
                 <a href="../../views/assetCondition/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="	fas fa-hand-holding-heart nav-icon"></i>
                   <p>Asset Condition</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../views/assetStatus/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="	fas fa-calendar-check nav-icon"></i>
                   <p>Asset Status</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../views/assetType/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="fas fa-shapes nav-icon"></i>
                   <p>Asset Types</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../../views/assetLocation" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  <i class="fas fa-map-marker-alt nav-icon"></i>
                   <p>Asset Location</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../views/personelGroup/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Personel Group</p>
+                <a href="../../views/personnelGroup/" class="nav-link">
+                  <i class="fa fa-group nav-icon"></i>
+                  <p>Personnel Group</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../views/personelTitle/" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Personel Title</p>
+                <a href="../../views/personnelTitle/" class="nav-link">
+                  <i class="fas fa-chalkboard-teacher nav-icon"></i>
+                  <p>Personnel Title</p>
                 </a>
               </li>
               

@@ -10,7 +10,7 @@
     <ul class="navbar-nav ml-auto">
        <li class="nav-item dropdown bg-gray-light">
         <a class="nav-link rounded border  border-success p-2 text-success" data-toggle="dropdown" href="#">
-          <i class="fas fa-user-circle"></i><b> Jeffrid De ocampo Laxamana </b>    <i class="fas fa-chevron-circle-down"></i>
+          <i class="fas fa-user-circle"></i><b><?php echo $_SESSION["username"];?>  </b>    <i class="fas fa-chevron-circle-down"></i>
         </a>
 
         <div class="dropdown-menu dropdown-menu-m dropdown-menu-right  border-success p-2 ">

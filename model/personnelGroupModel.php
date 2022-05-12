@@ -1,5 +1,5 @@
 <?php  
-	class personelGroup
+	class personnelGroup
 	{
 		private $host = 'localhost';
 		private $username = "root";
@@ -24,7 +24,7 @@
 		{
 		
 			$data=array();
-            $sql = "SELECT `group` FROM personel_group WHERE `group`=?";
+            $sql = "SELECT `group` FROM personnel_group WHERE `group`=?";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([$groupName]);
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -34,7 +34,7 @@
 		
         public function fetch(){
             $data=array();
-            $sql = "SELECT * FROM personel_group order by `id` asc";
+            $sql = "SELECT * FROM personnel_group order by `id` asc";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute();
 			$data = $stmt->fetchAll();
@@ -50,7 +50,7 @@
 			$addData=[
 				'groupName'=>$groupName,
 			];
-            $sql = "INSERT INTO personel_group(`group`) 
+            $sql = "INSERT INTO personnel_group(`group`) 
 			VALUES (:groupName)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
@@ -64,7 +64,7 @@
 				'groupId'=>$groupId,
 				'groupName'=>$groupName
 			];
-			$sql = "UPDATE personel_group SET `group`=:groupName
+			$sql = "UPDATE personnel_group SET `group`=:groupName
 			WHERE `id`=:groupId";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($updateData);
@@ -74,7 +74,7 @@
 
 		function delete($groupId)
 		{
-			$sql = "DELETE FROM personel_group WHERE `id`=?";
+			$sql = "DELETE FROM personnel_group WHERE `id`=?";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([$groupId]);
 			if($stmt) return 1;

@@ -1,6 +1,6 @@
 <?php
-    include('../../model/personelGroupModel.php');
-    $group = new personelGroup();
+    include('../../model/personnelGroupModel.php');
+    $group = new personnelGroup();
     
     if(isset($_POST['groupName']))
     {

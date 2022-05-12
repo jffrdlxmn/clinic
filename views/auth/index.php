@@ -42,12 +42,12 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
                   
                 <div class="form-floating mb-2 mt-4">
                 <span id="message"></span>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" onkeydown="if (event.keyCode == 13){Login();}">
               
                 </div>
                 <div class="form-floating mb-3">
 
-                  <input id="password" name="password" type="password" class="form-control mb-1"  placeholder="Enter Password">
+                  <input id="password" name="password" type="password" class="form-control mb-1"  placeholder="Enter Password" onkeydown="if (event.keyCode == 13){Login();}">
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" id="showPass"></span>
                 </div>
 
@@ -121,7 +121,6 @@ function Login()
 { 
   if($('#username').val() == "" || $('#password').val() == "" )
   {
-    alert('test');
     return false;
   }
   

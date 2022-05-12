@@ -1,5 +1,5 @@
 <?php  
-	class personelTitle
+	class personnelTitle
 	{
 		private $host = 'localhost';
 		private $username = "root";
@@ -24,7 +24,7 @@
 		{
 		
 			$data=array();
-            $sql = "SELECT `title` FROM personel_title WHERE `title`=?";
+            $sql = "SELECT `title` FROM personnel_title WHERE `title`=?";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([$titleName]);
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -34,7 +34,7 @@
 		
         public function fetch(){
             $data=array();
-            $sql = "SELECT * FROM personel_title order by `title` asc";
+            $sql = "SELECT * FROM personnel_title order by `title` asc";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute();
 			$data = $stmt->fetchAll();
@@ -50,7 +50,7 @@
 			$addData=[
 				'titleName'=>$titleName,
 			];
-            $sql = "INSERT INTO personel_title(`title`) 
+            $sql = "INSERT INTO personnel_title(`title`) 
 			VALUES (:titleName)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
@@ -64,7 +64,7 @@
 				'titleId'=>$titleId,
 				'titleName'=>$titleName
 			];
-			$sql = "UPDATE personel_title SET `title`=:titleName
+			$sql = "UPDATE personnel_title SET `title`=:titleName
 			WHERE `id`=:titleId";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($updateData);
@@ -74,7 +74,7 @@
 
 		function delete($titleId)
 		{
-			$sql = "DELETE FROM personel_title WHERE `id`=?";
+			$sql = "DELETE FROM personnel_title WHERE `id`=?";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute([$titleId]);
 			if($stmt) return 1;

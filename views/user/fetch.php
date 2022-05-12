@@ -22,7 +22,6 @@
                 <td  role="cell"bgcolor="#FFF"><?php echo $data['username'] ; ?></td>  
                 <td  role="cell" bgcolor="#FFF" >
                     <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['username']; ?>`)" class="btn btn-success btn-sm">Change Password</button>
-                    <button type="button"  onclick="Delete(`<?php echo $data['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
                 </td> 
             </tr>
     <?php
