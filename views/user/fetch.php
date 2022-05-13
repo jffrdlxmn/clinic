@@ -4,7 +4,7 @@
     $datas = $user->fetch();
 
 ?>
-<table  id="myTable" class="table table-stripped">
+<table  id="myTable" class="table table-striped">
     <thead>
         <tr >
             <th bgcolor="#101820" style="color:white;padding:15px;">Username</th>
@@ -19,8 +19,8 @@
        {
     ?>
             <tr role="row">   
-                <td  role="cell"bgcolor="#FFF"><?php echo $data['username'] ; ?></td>  
-                <td  role="cell" bgcolor="#FFF" >
+                <td  role="cell"><?php echo $data['username'] ; ?></td>  
+                <td  role="cell">
                     <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['username']; ?>`)" class="btn btn-success btn-sm">Change Password</button>
                 </td> 
             </tr>

@@ -4,7 +4,7 @@
     $datas = $type->fetch();
 
 ?>
-<table  id="myTable" class="table table-stripped">
+<table  id="myTable" class="table table-striped">
     <thead>
         <tr >
             <th bgcolor="#101820" style="color:white;padding:15px;">Condtion</th>
@@ -19,8 +19,8 @@
        {
     ?>
             <tr role="row">   
-                <td  role="cell"bgcolor="#FFF"><?php echo $data['type']; ?></td>  
-                <td  role="cell" bgcolor="#FFF" >
+                <td  role="cell"><?php echo $data['type']; ?></td>  
+                <td  role="cell">
                     <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['type']; ?>`)" class="btn btn-success btn-sm">Update</button>
                     <button type="button"  onclick="Delete(`<?php echo $data['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
                 </td> 

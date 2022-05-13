@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../../views/personnel/" class="nav-link">
+            <a href="../../views/vendor/" class="nav-link">
               <i class="nav-icon fa fa-truck"></i>
               <p>Vendor</p>
             </a>

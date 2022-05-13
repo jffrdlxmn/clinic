@@ -19,8 +19,8 @@
        {
     ?>
             <tr role="row">   
-                <td  role="cell"bgcolor="#FFF"><?php echo $data['group']; ?></td>  
-                <td  role="cell" bgcolor="#FFF" >
+                <td  role="cell"><?php echo $data['group']; ?></td>  
+                <td  role="cell">
                     <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['group']; ?>`)" class="btn btn-success btn-sm">Update</button>
                     <button type="button"  onclick="Delete(`<?php echo $data['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
                 </td> 
