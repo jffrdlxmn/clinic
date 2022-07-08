@@ -5,7 +5,7 @@
     <a href="index.php" class="brand-link "  >
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image  " >
       <span class="brand-text font-weight-bolder ">
-        <h class="text-success">SUPPLY</h>
+        <h class="text-success">CLINIC</h>
           
         </span>
     </a>
@@ -23,50 +23,12 @@
           
 
           <li class="nav-item">
-            <a href="../../views/user/" class="nav-link">
-              <i class="nav-icon fas fa-hand-holding-usd"></i>
-              <p>Asset</p>
+            <a href="../../views/main/" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>Process</p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="../../views/personnel/" class="nav-link">
-              <i class="nav-icon fa fa-group"></i>
-              <p>Personnel</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../../views/vendor/" class="nav-link">
-              <i class="nav-icon fa fa-truck"></i>
-              <p>Vendor</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-folder"></i>
-              <p>
-                Reports
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
-                  <i class="far fa-file nav-icon"></i>
-                  <p>General</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/user/" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              
-              </li>
-            </ul>
-          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-gear"></i>
@@ -77,61 +39,16 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../views/user/" class="nav-link">
+                <a href="../../views/program/" class="nav-link">
                   <i class="fa fa-user nav-icon"></i>
-                  <p>Users</p>
+                  <p>Program</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../../views/assetDepreciation/" class="nav-link">
-                  <i class="fas fa-sort-down nav-icon"></i>
-                  <p>Asset Depreciation</p>
-                </a>
-              </li>
-              
-              <li class="nav-item">
-                <a href="../../views/assetCondition/" class="nav-link">
-                  <i class="	fas fa-hand-holding-heart nav-icon"></i>
-                  <p>Asset Condition</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/assetStatus/" class="nav-link">
-                  <i class="	fas fa-calendar-check nav-icon"></i>
-                  <p>Asset Status</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/assetType/" class="nav-link">
-                  <i class="fas fa-shapes nav-icon"></i>
-                  <p>Asset Types</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/assetLocation" class="nav-link">
-                  <i class="fas fa-map-marker-alt nav-icon"></i>
-                  <p>Asset Location</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/personnelGroup/" class="nav-link">
-                  <i class="fa fa-group nav-icon"></i>
-                  <p>Personnel Group</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../views/personnelTitle/" class="nav-link">
-                  <i class="fas fa-chalkboard-teacher nav-icon"></i>
-                  <p>Personnel Title</p>
-                </a>
-              </li>
+             
               
               </li>
             </ul>
           </li>
-         
-
-    
           
         </ul>
       </nav>

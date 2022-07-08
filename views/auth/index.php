@@ -7,7 +7,7 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
 <head>
     <meta charset="utf-8">
     <meta name="viewport"  http-equiv="Content-Type" content="width=device-width, initial-scale=1">
-    <title>Supply</title>
+    <title>Clinic</title>
       <!-- Theme style -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -25,7 +25,7 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
   <div class="row g-0">
     <div class="d-none d-md-flex col-md-4 col-lg-7 bg-image">
       <div class="d-flex align-items-center mx-auto">
-        <img src="../../dist/img/PinClipart.com_get-well-soon-clipart_5426010.png" alt=""  width="100%" >
+        <img src="../../dist/img/clinic.jpg" alt=""  width="100%" >
       </div>
     </div>
     <div class="col-md-8 col-lg-5">

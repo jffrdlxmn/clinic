@@ -7,6 +7,10 @@
   z-index: 4;
 }
 
+.inputField {
+  font-size:15px;
+  height: 2rem;
+}
 
 #message{
     color:rgb(176, 16, 16) ;
