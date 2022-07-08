@@ -28,6 +28,12 @@
               <p>Process</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="../../views/student/" class="nav-link">
+              <i class="nav-icon fas fa-group"></i>
+              <p>Student</p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">

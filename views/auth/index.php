@@ -136,7 +136,7 @@ function Login()
        
           if(data == 1)
           {
-            location.href="../../views/user/";
+            location.href="../../views/main/";
           }
           else{
             document.getElementById('message').innerHTML= "<i class='fas fa-exclamation-circle'> </i>" + data;
