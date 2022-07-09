@@ -13,7 +13,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -115,7 +115,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 <!-- Sweet Alert -->
@@ -177,7 +177,9 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
                         {
                             success('Data Added successfully!');
                             addModal.style.display = "none";
+                            $('#addProgram').val('');
                             jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
+
 
                         }
                         else{

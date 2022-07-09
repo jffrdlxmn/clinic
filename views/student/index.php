@@ -13,7 +13,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -54,15 +54,14 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Program</h1>
-        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add program</button>
+        <h1 class="text-success text-center">Student</h1>
 
         <!-- DATA TABLE -->
-            <div id="programFetch"></div>
+            <div id="studentFetch"></div>
         <!-- END DATA TABLE -->
 
         <!-- MODALS -->
-        <?php include('../../modals/programModal.php'); ?>
+        <?php include('../../modals/studentModal.php'); ?>
         <!-- END MODALS -->
         
        
@@ -115,7 +114,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 <!-- Sweet Alert -->
@@ -123,156 +122,85 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
 
 <script>
- jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
+ jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
 </script>
 
 <script>
 
-  var addModal = document.getElementById("addModal");
-  function openAddModal()
-  {
-    addModal.style.display = "block";
-  }
-
-  $(document).on("click", "#addProgramBtn", function() { 
-  $.ajax({
-      url: "checkExist.php",
-      type: "POST",
-      cache: false,
-      data:{
-        program: $('#addProgram').val(),
-      },
-      success: function(programData){
-          if(programData == 1)
-          {
-            warningfunction('Already exist!');   
-          }
-          else{
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success m-1 ',
-                cancelButton: 'btn btn-danger '
-            },
-            buttonsStyling: false
-            })
-            swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "you want to add this data?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Confirm',
-            cancelButtonText: 'Cancel   ',
-            reverseButtons: true
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "save.php",
-                    type: "POST",
-                    cache: false,
-                    data:{
-                      program: $('#addProgram').val(),
-                    },
-                    success: function(data){  
-                        if(data == 1)
-                        {
-                            success('Data Added successfully!');
-                            addModal.style.display = "none";
-                            jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
-
-                        }
-                        else{
-                            alert(data);
-                            errorfunction('Data Adding Failed!');
-                        }
-                    }
-                });
-            }   
-              else if (result.dismiss === Swal.DismissReason.cancel){}
-              })        
-          }
-      }
-  });   	
-});
-
-
-
-
-var updateModal = document.getElementById("updateModal");
-function openUpdateModal(id,program)
+ 
+var printModal = document.getElementById("printModal");
+function openPrintModal(name,program,studentCtrlNo)
 {
-  updateModal.style.display = "block";
-  document.getElementById("updateProgramId").value=id;
-  document.getElementById("updateProgramName").value=program;
-  document.getElementById("originalProgram").value=program;
+  printModal.style.display = "block";
+  url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
+    $('#pdfViewer').attr("src",url);
+ 
 }
 
 
-$(document).on("click", "#updateProgramBtn", function() { 
+var updateModal = document.getElementById("updateModal");
+function openUpdateModal(id,name,program,studentCtrlNo)
+{
+  updateModal.style.display = "block";
+  document.getElementById("updateStudentId").value=id;
+  document.getElementById("originalProgram").value=program;
+  document.getElementById("originalName").value=name;
+  document.getElementById("updateStudentName").value=name;
+  document.getElementById("updateStudentProgram").value=program;
+  document.getElementById("UpdateStudentCtrlNo").value=studentCtrlNo;
+}
 
-if($('#originalProgram').val() == $('#updateProgramName').val() 
-)
+
+$(document).on("click", "#updateStudentBtn", function() { 
+
+if($('#originalProgram').val() == $('#updateStudentProgram').val() && $('#originalName').val() == $('#updateStudentName').val())
 {
   warningfunction('No changes!');
   return false;
 }
 
-$.ajax({
-    url: "checkExist.php",
-    type: "POST",
-    cache: false,
-    data:{
-      program: $('#updateProgramName').val(),
-    },
-    success: function(programData){
-      if(programData == 1)
-      {
-        warningfunction('Already exist!');   
-      }
-      else{
-        const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success m-1 ',
-            cancelButton: 'btn btn-danger '
-        },
-        buttonsStyling: false
-        })
-        swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "you want to update this data?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Confirm',
-        cancelButtonText: 'Cancel   ',
-        reverseButtons: true
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "update.php",
-                type: "POST",
-                cache: false,
-                data:{
-                  programId: $('#updateProgramId').val(),
-                  programName: $('#updateProgramName').val(),
-                },
-                success: function(data){
-                    if(data == 1)
-                    {
-                        success('Data updated successfully!');
-                        updateModal.style.display = "none";
-                        jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
-                    }
-                    else{
-                        alert(data);
-                        errorfunction('Data Updating Failed!');
-                    }
-                }
-            });
-        }   
-        else if (result.dismiss === Swal.DismissReason.cancel){}
-        })   
-      }       
-    }
-});   	
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+      confirmButton: 'btn btn-success m-1 ',
+      cancelButton: 'btn btn-danger '
+  },
+  buttonsStyling: false
+  })
+  swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "you want to update this data?",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  cancelButtonText: 'Cancel   ',
+  reverseButtons: true
+  }).then((result) => {
+  if (result.isConfirmed) {
+      $.ajax({
+          url: "update.php",
+          type: "POST",
+          cache: false,
+          data:{
+            id: $('#updateStudentId').val(),
+            name: $('#updateStudentName').val(),
+            programId: $('#updateStudentProgram').val()
+          },
+          success: function(data){
+              if(data == 1)
+              {
+                  success('Data updated successfully!');
+                  updateModal.style.display = "none";
+                  jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
+              }
+              else{
+                  alert(data);
+                  errorfunction('Data Updating Failed!');
+              }
+          }
+      });
+  }   
+  else if (result.dismiss === Swal.DismissReason.cancel){}
+  })   	
 });
      
 
@@ -304,13 +232,13 @@ function Delete(id)
             type: "POST",
             cache: false,
             data:{
-              programId: id,
+              id: id
             },
             success: function(data){
                 if(data == 1)
                 {
                   success('Data Deleted successfully!');
-                  jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
+                  jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
                 }
                 else{
                     alert(data);
@@ -329,7 +257,7 @@ function Delete(id)
 // When the user clicks button close
 function closebtn() 
 {
-    addModal.style.display = "none";
+    printModal.style.display = "none";
     updateModal.style.display = "none";
 }   
 </script>

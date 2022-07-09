@@ -21,8 +21,8 @@
             <tr role="row">   
                 <td  role="cell"><?php echo $data['program']; ?></td>  
                 <td  role="cell">
-                    <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['program']; ?>`)" class="btn btn-success btn-sm">Update</button>
-                    <button type="button"  onclick="Delete(`<?php echo $data['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="button"  onclick="openUpdateModal(`<?php echo $data['id']; ?>`,`<?php echo $data['program']; ?>`)" class="btn btn-success btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                    <button type="button"  onclick="Delete(`<?php echo $data['id']; ?>`)" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td> 
             </tr>
     <?php

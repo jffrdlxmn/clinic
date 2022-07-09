@@ -1,6 +1,16 @@
 <?php
 // Include the main TCPDF library (search for installation path).
 require_once('TCPDF-main/tcpdf.php');
+include('../model/programModel.php');
+$program =" ";
+$data = new Program();
+$receive = $data->getProgram($_GET['program']);
+if($receive != 0)$program =$receive['program'];
+
+
+
+
+
 
 
 class PDF extends TCPDF
@@ -64,12 +74,11 @@ $pdf->Image($img_file, 0, 0, 148, '100', 'PNG', '', 'T', false, 300, '', false, 
 
 
 
-
 $pdf->Ln(9);
 $pdf->SetFont('times','B',6);
-$pdf->Cell(130,5,'Student No.',0,0,'R');
+$pdf->Cell(120,5,'Student No.',0,0,'R');
 $pdf->SetFont('times','',6);
-$pdf->Cell(25,5,$_GET['studentCtrlNo'],0,0,'L');
+$pdf->Cell(30,5,$_GET['studentCtrlNo'],0,0,'L');
 $pdf->Ln(13);
 
 $pdf->SetFont('times','',7);
@@ -90,15 +99,15 @@ $pdf->Cell(6,4,'FIT','B',0,0);
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
 $pdf->SetFont('times','B',7);
-$pdf->Cell(65,4,ucwords(strtoupper($_GET['program'])),'B',0,'C');
+$pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(10,5,'program.','',0,'');
 
 $pdf->Ln(33);
 $pdf->SetFont('times','B',6);
-$pdf->Cell(130,5,'Student No.',0,0,'R');
+$pdf->Cell(120,5,'Student No.',0,0,'R');
 $pdf->SetFont('times','',6);
-$pdf->Cell(25,5,$_GET['studentCtrlNo'],0,0,'L');
+$pdf->Cell(30,5,$_GET['studentCtrlNo'],0,0,'L');
 $pdf->Ln(13);
 
 $pdf->SetFont('times','',7);
@@ -118,7 +127,7 @@ $pdf->Cell(6,4,'FIT','B',0,0);
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
 $pdf->SetFont('times','B',7);
-$pdf->Cell(65,4,ucwords(strtoupper($_GET['program'])),'B',0,'C');
+$pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(10,5,'program.','',0,'');
 

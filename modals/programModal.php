@@ -9,7 +9,7 @@
 
 					<div class="form-group">
 						<label>Add Program</label>
-						<input id="addProgram" name="addProgram" type="text" class="form-control mb-1">
+						<input id="addProgram" name="addProgram" type="text" class="form-control mb-1" autocomplete="off" oninput="this.value = this.value.toUpperCase()">
 					</div>
 					
 					
@@ -35,7 +35,7 @@
 						<label>Update Program</label>
 						<input hidden id="updateProgramId" name="updateProgramId" type="text" class="form-control mb-1">
 						<input hidden id="originalProgram" name="originalProgram" type="text" class="form-control mb-1">
-						<input id="updateProgramName" name="updateProgramName" type="text" class="form-control mb-1">
+						<input id="updateProgramName" name="updateProgramName" autocomplete="off" type="text" class="form-control mb-1" oninput="this.value = this.value.toUpperCase()>
 
 					</div>
 					

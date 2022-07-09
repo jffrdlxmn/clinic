@@ -1,12 +1,13 @@
 <?php
     
-    include('../../model/programModel.php');
-      $program = new Program();
-
-    if(isset($_POST["programId"],$_POST["programName"])){
-        $received = $program->update($_POST["programId"],$_POST['programName']);
+    include('../../model/studentModel.php');
+    $student = new Student();
+   
+    if(isset($_POST["id"],$_POST["name"],$_POST["programId"])){
+        $received = $student->update($_POST["id"],$_POST["name"],$_POST["programId"]);
         if($received == 1)echo '1';   
     }
+
     
 ?>
 

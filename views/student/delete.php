@@ -1,9 +1,9 @@
 <?php
-    include('../../model/programModel.php');
-    $program = new Program();
-    if(isset($_POST['programId']))
+    include('../../model/studentModel.php');
+    $student = new Student();
+    if(isset($_POST['id']))
     {
-        $received = $program->delete($_POST['programId']);
+        $received = $student->delete($_POST['id']);
         if($received == 1)echo '1';   
     }
 ?>

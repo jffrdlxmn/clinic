@@ -54,6 +54,7 @@
 			else return 0;
 		}
 
+		
 		function update($programId,$programName){
             $updateData=[];
 			$updateData=[
@@ -75,6 +76,17 @@
 			$stmt->execute([$programId]);
 			if($stmt) return 1;
 			else return 0;
+		}
+
+		function getProgram($id)
+		{
+			$data=array();
+            $sql = "SELECT * FROM program WHERE `id`=?";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([$id]);
+			$data = $stmt->fetch();
+			if($data>0) return $data;
+            else return "0"; 
 		}
         
 	}	

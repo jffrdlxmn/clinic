@@ -30,7 +30,7 @@
           </li>
           <li class="nav-item">
             <a href="../../views/student/" class="nav-link">
-              <i class="nav-icon fas fa-group"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>Student</p>
             </a>
           </li>

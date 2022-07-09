@@ -1,26 +1,26 @@
-<!-- ADD Modal content -->
-<div id="addModal" class="modal" >
-				<!-- Modal content -->
-				<div class="modal-content" style="width:30%;">
-					<div class="modal-body">
-					<div class="modal-header">
-						<span class="close" onclick="closebtn()">&times;</span>
-					</div>
+<?php
+include('../../model/programModel.php');
+$data = new Program();
+$programs = $data->fetch();
+?>
+<!-- Print Modal content -->
+<div id="printModal" class="modal" >
+	<!-- Modal content -->
+	<div class="modal-content" style="width:50%;">
+		<div class="modal-body">
 
-					<div class="form-group">
-						<label>Add Program</label>
-						<input id="addProgram" name="addProgram" type="text" class="form-control mb-1">
-					</div>
-					
-					
-					<div class="modal-footer">
-						<button onclick="closebtn();" type="button" class="btn btn-danger btn-s">CLOSE</button>
-						<button id="addProgramBtn" type="button" class="btn btn-success">SAVE</button>
-					</div>       
-					</div>
-				</div>
-			</div> 
-<!-- ADD Modal content -->
+			<div class="card-body">
+				<span class="close mb-3" onclick="closebtn()">&times;</span>
+				<iframe id="pdfViewer" src="../../reportPDF/generatePDF.php?name=
+				&program=&studentCtrlNo=&embedded=true" 
+				width="100%" height="427" style="border: none;"></iframe>
+
+			</div>
+		
+		</div>
+	</div>
+</div> 
+<!-- PRINT Modal content -->
 
 <!-- UPDATE Modal content -->
 <div id="updateModal" class="modal" >
@@ -32,17 +32,37 @@
 					</div>
 
 					<div class="form-group">
-						<label>Update Program</label>
-						<input hidden id="updateProgramId" name="updateProgramId" type="text" class="form-control mb-1">
+						<input hidden id="updateStudentId" name="updateStudentId" type="text" class="form-control mb-1">
+						<input hidden id="originalName" name="originalName" type="text" class="form-control mb-1">
 						<input hidden id="originalProgram" name="originalProgram" type="text" class="form-control mb-1">
-						<input id="updateProgramName" name="updateProgramName" type="text" class="form-control mb-1">
+
+						<small>Student Control no.</small>
+						<input  id="UpdateStudentCtrlNo" name="UpdateStudentCtrlNo" type="text" class="form-control mb-1" disabled>
+						<small>Name</small>
+						<input  id="updateStudentName" name="updateStudentName" type="text" class="form-control mb-1" autocomplete="off" oninput="this.value = this.value.toUpperCase()">
+						<small>Program</small>
+						<div class="rounded" style="border: 0.5px solid #004d28">
+                        <select name="updateStudentProgram" class="form-control" id="updateStudentProgram">
+                        <option value="0" selected disabled>Select Program</option>
+                          <?php ;
+                          foreach($programs as $program)
+                          {
+                            $programId=$program['id'];
+                            $program = $program['program'];
+                            echo "<option value='$programId'>$program</option>";
+                          }
+                          ?>
+
+                        </select>
+						
+					
 
 					</div>
 					
 					
 					<div class="modal-footer">
 						<button onclick="closebtn();" type="button" class="btn btn-danger btn-s">CLOSE</button>
-						<button id="updateProgramBtn" type="button" class="btn btn-success">UPDATE</button>
+						<button id="updateStudentBtn" type="button" class="btn btn-success">UPDATE</button>
 					</div>       
 					</div>
 				</div>

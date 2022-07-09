@@ -34,46 +34,52 @@
 		
         public function fetch(){
             $data=array();
-            $sql = "SELECT * FROM student order by `id` asc";
+            $sql = "SELECT student.*,program FROM student 
+			INNER JOIN program ON student.programId = program.id
+			 order by `id` asc";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute();
 			$data = $stmt->fetchAll();
 			return $data;
         }
-		
 
-        function save($program){
+        function save($name,$program,$studentCtrlNo){
 			$addData=[];
 			$addData=[
+				'name'=>$name,
 				'program'=>$program,
+				'studentCtrlNo'=>$studentCtrlNo,
 			];
-            $sql = "INSERT INTO program(`program`) 
-			VALUES (:program)";
+            $sql = "INSERT INTO student(`fullname`,`programId`,`studentCtrlNo`)
+			VALUES (:name,:program,:studentCtrlNo)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
 			if($stmt) return 1;
 			else return 0;
 		}
 
-		function update($programId,$programName){
+		function update($id,$studentName,$programId){
             $updateData=[];
 			$updateData=[
-				'programId'=>$programId,
-				'programName'=>$programName
+				'id'=>$id,
+				'studentName'=>$studentName,
+				'programId'=>$programId
+
 			];
-			$sql = "UPDATE program SET `program`=:programName
-			WHERE `id`=:programId";
+	
+			$sql = "UPDATE student SET `fullname`=:studentName,`programId`=:programId
+			WHERE `id`=:id";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($updateData);
 			if($stmt) return 1;
 			else return 0;
 		}
 
-		function delete($programId)
+		function delete($studentId)
 		{
-			$sql = "DELETE FROM program WHERE `id`=?";
+			$sql = "DELETE FROM student WHERE `id`=?";
 			$stmt = $this->db->prepare($sql);
-			$stmt->execute([$programId]);
+			$stmt->execute([$studentId]);
 			if($stmt) return 1;
 			else return 0;
 		}

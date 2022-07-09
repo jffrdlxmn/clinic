@@ -7,6 +7,7 @@
   z-index: 4;
 }
 
+
 .inputField {
   font-size:15px;
   height: 2rem;
@@ -54,7 +55,7 @@
     transition: ease-in-out, width .35s ease-in-out;
   }
   input[type]:focus,select:focus{
-    border-color:#e6ad3e;
+    border-color:#3ea3e6;
     transition: ease-in-out, width .35s ease-in-out;
   }
   

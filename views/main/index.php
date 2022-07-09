@@ -18,7 +18,7 @@ $programs = $data->fetch();
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
@@ -27,6 +27,7 @@ $programs = $data->fetch();
   <!-- Daterange picker -->
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <script src="https://kit.fontawesome.com/930a17464c.js" crossorigin="anonymous"></script>
+
    <!-- MY CSS -->
    <link rel="stylesheet" href="../../dist/css/style.css">
 
@@ -56,43 +57,43 @@ $programs = $data->fetch();
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card p-2">
+        <div class="card p-1">
           <div class="body">
             <div class="conatiner">
 
             
               <div class="row">
 
-                <div class="col-md-4 p-2">
-                  <div class="card">
+                <div class="col-md-4 p-2 " >
+                  <div class="card" style="height:450px;">
                     <div class="card-body">
-                      <h4 class=" bg-green text-center">Student Information</h4>
-                      <small ><b>Student No.</b> </small>
-                      <input type="text" class="form-control"  id="studentCtrlNo" autocomplete="off" value="201510121" disabled>
+                      <h4 class="text-center rounded" style=" background-color: #004d28;color:white;">Student Information</h4>
+                      <div id="counterFetch"></div>
                       <small ><b>Name</b></small>
-                      <input type="text" class="form-control"  id="name" autocomplete="off" placeholder="Enter Name">
+                      <input type="text" class="form-control"  id="name" autocomplete="off" placeholder="Enter Name" oninput="this.value = this.value.toUpperCase()"> 
                       <small ><b>Program</b></small>
-                
-                      <select name="program" class="form-control inputField" id="program">
-                      <option value="0" selected disabled>Select Program</option>
-                        <?php ;
-                        foreach($programs as $program)
-                        {
-                          $programId=$program['id'];
-                          $program = $program['program'];
-                          echo "<option value='$program'>$program</option>";
-                        }
-                        ?>
-                        
-                      </select>
+                      <div class="rounded" style="border: 0.5px solid #004d28">
+                        <select name="program" class="form-control" id="program">
+                        <option value="0" selected disabled>Select Program</option>
+                          <?php ;
+                          foreach($programs as $program)
+                          {
+                            $programId=$program['id'];
+                            $program = $program['program'];
+                            echo "<option value='$programId'>$program</option>";
+                          }
+                          ?>
+
+                        </select>
+                      </div>
                       <button class="btn btn-success w-100 mt-3"id="generate">GENERATE</button>
-    
+                      <button class="btn btn-success w-100 mt-1"id="save" style=" background-color: #004d28;color:white;" disabled>SAVE</button>  
                     </div>
                   </div>
                 </div>
 
-                <div class="col-md-8 p-2">
-                <div class="card">
+                <div class="col-md-8 p-2" >  
+                <div class="card" style="height:450px;">
                   <div class="card-body">
                   <iframe id="pdfViewer" src="../../reportPDF/generatePDF.php?name=
                     &program=&studentCtrlNo=&embedded=true" 
@@ -160,58 +161,114 @@ $programs = $data->fetch();
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <!-- Sweet Alert -->
 <script src="../../dist/sweetalert/sweetalert_library.js"></script>
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
-
-
-
-
 <script>
-  $(document).on("click", "#generate", function() { 
-    var name = $('#name').val();
-    var program = $('#program').val();
-    var studentCtrlNo = $('#studentCtrlNo').val();
-   
-    const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-primary m-1 ',
-        cancelButton: 'btn btn-danger '
-    },
-    buttonsStyling: false
-    })
 
-    swalWithBootstrapButtons.fire({
+//STUDENT CONTROL NO.
+jQuery('#counterFetch').load('counter.php', 'f' + (Math.random()*100000));
+
+  
+//GENERATE TO PDF  
+$(document).on("click", "#generate", function() {   
+
+  var name = $('#name').val();
+  var program = $('#program').val();
+  var studentCtrlNo = $('#studentCtrlNo').val();
+  if(name == ""){warningfunction('Please fill up name');return false;}
+  if(program == null){warningfunction('Please select program');return false;}
+
+
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+      confirmButton: 'btn btn-success m-1 ',
+      cancelButton: 'btn btn-danger '
+  },
+  buttonsStyling: false
+  })
+  swalWithBootstrapButtons.fire({
     title: 'Are you sure?',
-    text: "Please double check all data",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Proceed',
-    cancelButtonText: 'Cancel   ',
-    reverseButtons: true
-    }).then((result) => {
-    if (result.isConfirmed) {
+  text: "Please double check all data",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  cancelButtonText: 'Cancel   ',
+  reverseButtons: true
+  }).then((result) => {
+  if (result.isConfirmed) {
 
-      
-     
-      url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
-      $('#pdfViewer').attr("src",url);
-      //window.open(url);
-    }   
+    url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
+    $('#pdfViewer').attr("src",url);
+    //window.open(url);
+    document.getElementById("save").disabled = false
+  }   
+  else if (result.dismiss === Swal.DismissReason.cancel){}
+  })        
+         
+});
+
+
+// SAVE
+$(document).on("click", "#save", function() {   
+  var name = $('#name').val();
+  var program = $('#program').val();
+  var studentCtrlNo = $('#studentCtrlNo').val();
+  if(name == ""){warningfunction('Please fill up name');return false;}
+  if(program == null){warningfunction('Please select program');return false;}
+
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+      confirmButton: 'btn btn-success m-1 ',
+      cancelButton: 'btn btn-danger '
+  },
+  buttonsStyling: false
+  })
+  swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "you want to add this data?",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  cancelButtonText: 'Cancel   ',
+  reverseButtons: true
+  }).then((result) => {
+  if (result.isConfirmed) {
+      $.ajax({
+          url: "save.php",
+          type: "POST",
+          cache: false,
+          data:{
+            name: name,
+            program: program,
+            studentCtrlNo: studentCtrlNo,
+          },
+          success: function(data){  
+              if(data == 1)
+              {
+                jQuery('#counterFetch').load('counter.php', 'f' + (Math.random()*100000));
+                $('#name').val('');
+                $('#program').val(0);
+                url  = '../../reportPDF/generatePDF.php?name=' + '' + '&program=' + '' + '&studentCtrlNo=' + '' ;
+                $('#pdfViewer').attr("src",url);
+                success('Data Added Successfully!');
+              }
+              else{
+                  alert(data);
+                  errorfunction('Data Adding Failed!');
+              }
+          }
+      });
+  }   
     else if (result.dismiss === Swal.DismissReason.cancel){}
     })        
-     
+})    
 
-
-      
-        
-  });
 </script>
 </body>
 </html>
