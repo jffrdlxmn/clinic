@@ -73,6 +73,8 @@ $pdf->Image($img_file, 0, 0, 148, '100', 'PNG', '', 'T', false, 300, '', false, 
 0, false, false, false);
 
 
+$spaces = 33;
+
 
 $pdf->Ln(9);
 $pdf->SetFont('times','B',6);
@@ -95,20 +97,40 @@ $pdf->SetFont('times','',7);
 $pdf->Cell(5,5,'','',0,0);
 $pdf->Cell(33,5,' to be physically and medically',0,0,0);
 $pdf->SetFont('times','B',7);
-$pdf->Cell(6,4,'FIT','B',0,0);
+
+
+$pdf->Cell(10,4,$_GET['healthStatus'],'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
 $pdf->SetFont('times','B',6);
 $pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
-$pdf->Cell(10,5,'program.','',0,'');
 
-$pdf->Ln(33);
+if($_GET['healthStatus'] == 'UNFIT')
+{
+
+
+$pdf->Cell(10,5,'program,','',0,'');
+$pdf->Ln(4);
+$pdf->Cell(5,5,'','',0,0);
+$pdf->Cell(65,5,'recomended to shift to another course.','',0,'');
+$spaces = 29;
+}
+else{
+    $pdf->Cell(10,5,'program.','',0,'');
+}
+
+
+
+
+$pdf->Ln($spaces);
 $pdf->SetFont('times','B',6);
 $pdf->Cell(120,5,'Student No.',0,0,'R');
 $pdf->SetFont('times','',6);
 $pdf->Cell(30,5,$_GET['studentCtrlNo'],0,0,'L');
 $pdf->Ln(13);
+
+
 
 $pdf->SetFont('times','',7);
 $pdf->Cell(10,5,'',0,0,0);
@@ -123,13 +145,26 @@ $pdf->SetFont('times','',7);
 $pdf->Cell(5,5,'','',0,0);
 $pdf->Cell(33,5,' to be physically and medically',0,0,0);
 $pdf->SetFont('times','B',7);
-$pdf->Cell(6,4,'FIT','B',0,0);
+
+$pdf->Cell(10,4,$_GET['healthStatus'],'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
 $pdf->SetFont('times','B',7);
 $pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
-$pdf->Cell(10,5,'program.','',0,'');
+
+if($_GET['healthStatus'] == 'UNFIT')
+{
+
+
+$pdf->Cell(10,5,'program,','',0,'');
+$pdf->Ln(4);
+$pdf->Cell(5,5,'','',0,0);
+$pdf->Cell(65,5,'recomended to shift to another course.','',0,'');
+}
+else{
+    $pdf->Cell(10,5,'program.','',0,'');
+}
 
 
 

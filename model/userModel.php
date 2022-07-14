@@ -3,7 +3,7 @@
 	{
 		private $host = 'localhost';
 		private $username = "root";
-		private $dbname = "supply";
+		private $dbname = "clinic";
 		private $password = "";
 		private $connect;
 			

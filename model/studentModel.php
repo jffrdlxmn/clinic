@@ -43,15 +43,16 @@
 			return $data;
         }
 
-        function save($name,$program,$studentCtrlNo){
+        function save($name,$program,$studentCtrlNo,$healthStatus){
 			$addData=[];
 			$addData=[
 				'name'=>$name,
 				'program'=>$program,
 				'studentCtrlNo'=>$studentCtrlNo,
+				'healthStatus'=> $healthStatus,
 			];
-            $sql = "INSERT INTO student(`fullname`,`programId`,`studentCtrlNo`)
-			VALUES (:name,:program,:studentCtrlNo)";
+            $sql = "INSERT INTO student(`fullname`,`programId`,`studentCtrlNo`,`healthStatus`)
+			VALUES (:name,:program,:studentCtrlNo,:healthStatus)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
 			if($stmt) return 1;

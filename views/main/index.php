@@ -86,6 +86,16 @@ $programs = $data->fetch();
 
                         </select>
                       </div>
+                      <small ><b>Health Status</b></small>
+                      <div class="rounded" style="border: 0.5px solid #004d28">
+                        <select name="healthStatus" class="form-control" id="healthStatus">
+                        <option value="0" selected disabled>Select Health Status</option>
+                        <option value="FIT">FIT</option>
+                        <option value="UNFIT">UNFIT</option>
+                          
+
+                        </select>
+                      </div>
                       <button class="btn btn-success w-100 mt-3"id="generate">GENERATE</button>
                       <button class="btn btn-success w-100 mt-1"id="save" style=" background-color: #004d28;color:white;" disabled>SAVE</button>  
                     </div>
@@ -96,7 +106,7 @@ $programs = $data->fetch();
                 <div class="card" style="height:450px;">
                   <div class="card-body">
                   <iframe id="pdfViewer" src="../../reportPDF/generatePDF.php?name=
-                    &program=&studentCtrlNo=&embedded=true" 
+                    &program=&studentCtrlNo=&healthStatus=&embedded=true" 
                       width="100%" height="427" style="border: none;" ></iframe>
 
                   </div>
@@ -180,9 +190,13 @@ $(document).on("click", "#generate", function() {
 
   var name = $('#name').val();
   var program = $('#program').val();
+  var healthStatus =$('#healthStatus').val();
+
   var studentCtrlNo = $('#studentCtrlNo').val();
   if(name == ""){warningfunction('Please fill up name');return false;}
   if(program == null){warningfunction('Please select program');return false;}
+  if(healthStatus == null){warningfunction('Please select health Status');return false;}
+
 
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -203,7 +217,8 @@ $(document).on("click", "#generate", function() {
   }).then((result) => {
   if (result.isConfirmed) {
 
-    url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
+    url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo
+    + '&healthStatus=' + healthStatus ;
     $('#pdfViewer').attr("src",url);
     //window.open(url);
     document.getElementById("save").disabled = false
@@ -219,8 +234,10 @@ $(document).on("click", "#save", function() {
   var name = $('#name').val();
   var program = $('#program').val();
   var studentCtrlNo = $('#studentCtrlNo').val();
+  var healthStatus =$('#healthStatus').val();
   if(name == ""){warningfunction('Please fill up name');return false;}
   if(program == null){warningfunction('Please select program');return false;}
+  if(healthStatus == null){warningfunction('Please select health Status');return false;}
 
   const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -247,6 +264,7 @@ $(document).on("click", "#save", function() {
             name: name,
             program: program,
             studentCtrlNo: studentCtrlNo,
+            healthStatus: healthStatus,
           },
           success: function(data){  
               if(data == 1)
@@ -254,7 +272,7 @@ $(document).on("click", "#save", function() {
                 jQuery('#counterFetch').load('counter.php', 'f' + (Math.random()*100000));
                 $('#name').val('');
                 $('#program').val(0);
-                url  = '../../reportPDF/generatePDF.php?name=' + '' + '&program=' + '' + '&studentCtrlNo=' + '' ;
+                url  = '../../reportPDF/generatePDF.php?name=' + '' + '&program=' + '' + '&studentCtrlNo=' + '' + '&healthStatus=' + '' ;
                 $('#pdfViewer').attr("src",url);
                 success('Data Added Successfully!');
                 document.getElementById("save").disabled = true

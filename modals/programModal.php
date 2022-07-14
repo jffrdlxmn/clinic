@@ -35,7 +35,7 @@
 						<label>Update Program</label>
 						<input hidden id="updateProgramId" name="updateProgramId" type="text" class="form-control mb-1">
 						<input hidden id="originalProgram" name="originalProgram" type="text" class="form-control mb-1">
-						<input id="updateProgramName" name="updateProgramName" autocomplete="off" type="text" class="form-control mb-1" oninput="this.value = this.value.toUpperCase()>
+						<input id="updateProgramName" name="updateProgramName" autocomplete="off" type="text" class="form-control mb-1" oninput="this.value = this.value.toUpperCase()">
 
 					</div>
 					
