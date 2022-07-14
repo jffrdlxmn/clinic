@@ -98,7 +98,7 @@ $pdf->SetFont('times','B',7);
 $pdf->Cell(6,4,'FIT','B',0,0);
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
-$pdf->SetFont('times','B',7);
+$pdf->SetFont('times','B',6);
 $pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(10,5,'program.','',0,'');

@@ -1,12 +1,16 @@
 <?php session_start();
 if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
+
+include('../../model/programModel.php');
+$data = new Program();
+$programs = $data->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport"  http-equiv="Content-Type" content="width=device-width, initial-scale=1">
-  <title>Supply</title>
+  <title>Clinic</title>
   
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -49,20 +53,45 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
        
       </div><!-- /.container-fluid -->
     </section>
-
+   
 
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <h1 class="text-success text-center">Student</h1>
+        
+        <div class="float-left">
+        <button type="button"  onclick="getListOfStudents();" class="btn btn-success btn-sm ml-2" style="height:35px;"><i class="fa fa-print" aria-hidden="true"></i> PRINT</button>
+        </div>
+        <div class="float-right">
+          <div class="rounded" style="border: 0.5px solid #004d28;">
+            <select name="selectProgram" class="form-control" id="selectProgram" style="height:33px;">
+
+            <option value="0" selected disabled>Select Program</option>
+            <option value="All">All</option>
+              <?php ;
+              foreach($programs as $data)
+              {
+                $program = $data['program'];
+                echo "<option value='$program'>$program</option>";
+              }
+              ?>
+
+            </select>
+          </div>
+        </div>
+        
+
 
         <!-- DATA TABLE -->
             <div id="studentFetch"></div>
         <!-- END DATA TABLE -->
-
+      
         <!-- MODALS -->
         <?php include('../../modals/studentModal.php'); ?>
         <!-- END MODALS -->
+
+
         
        
 
@@ -135,6 +164,14 @@ function openPrintModal(name,program,studentCtrlNo)
   url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
     $('#pdfViewer').attr("src",url);
  
+}
+
+function getListOfStudents()
+{
+  program = $('#selectProgram').val();
+  url  = '../../reportPDF/summaryPDF.php?program=' + program  ;
+    $('#pdfViewer').attr("src",url);
+  window.open(url)
 }
 
 

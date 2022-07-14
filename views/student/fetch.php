@@ -38,8 +38,26 @@
     </tbody>
 </table>
 
+
+
 <script>
     $(document).ready( function () {
-        $('#myTable').DataTable();
+        var oTable = $('#myTable').dataTable({
+        "lengthChange": false,
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "bFilter": true,
+        }); 
+        $('#selectProgram').on('change',function(){
+          var selectedValue = $(this).val();
+          if (selectedValue == 'All')
+          {
+            oTable.fnFilter('',2);
+          }
+          else{
+            oTable.fnFilter("^"+selectedValue+"$", 2, true); //Exact value, column, reg
+          }
+        });
+     
     } );
 </script>            

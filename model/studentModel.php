@@ -83,6 +83,18 @@
 			if($stmt) return 1;
 			else return 0;
 		}
+
+		public function getListOfStudents($program){
+            $data=array();
+            $sql = "SELECT student.*,program FROM student 
+			INNER JOIN program ON student.programId = program.id
+			where `program` =?
+			order by `id` asc";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([$program]);
+			$data = $stmt->fetchAll();
+			return $data;
+        }
         
 	}	
 ?>

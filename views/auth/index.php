@@ -23,12 +23,12 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
 <body>
 <div class="container-fluid ps-md-0 bg">
   <div class="row g-0">
-    <div class="d-none d-md-flex col-md-4 col-lg-7 bg-image">
+    <div class="d-none d-md-flex col-md-4 col-lg-7 ">
       <div class="d-flex align-items-center mx-auto">
-        <img src="../../dist/img/clinic.jpg" alt=""  width="100%" >
+        <img src="../../dist/img/clinic.jpg" alt=""  width="100%" height="100%" >
       </div>
     </div>
-    <div class="col-md-8 col-lg-5">
+    <div class="col-md-8 col-lg-5 bg-image">
       <div class="login d-flex align-items-center ">
         <div class="container">
           <div class="row">
@@ -37,11 +37,11 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
               <!-- Sign In Form -->
               
                 <div class="d-flex align-items-center mx-auto">
-                <img src="../../dist/img/AdminLTELogo.png" alt="" heigt="30%" width="30%">
+                <img src="../../dist/img/clinic.png" alt="" heigt="100%" width="100%">
                 </div>
                   
                 <div class="form-floating mb-2 mt-4">
-                <span id="message"></span>
+                <span id="message" class=""></span>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" onkeydown="if (event.keyCode == 13){Login();}">
               
                 </div>
@@ -53,7 +53,7 @@ if(isset($_SESSION["username"])){ header("location:../../views/user/"); }
 
 
                 <div class="d-grid">
-                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2 w-100" onclick="Login()">Sign in</button>
+                  <button class="btn btn-lg  btn-login text-uppercase fw-bold mb-2 w-100" onclick="Login()">Sign in</button>
                 </div>
 
          

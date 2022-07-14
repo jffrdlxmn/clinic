@@ -14,7 +14,7 @@
 }
 
 #message{
-    color:rgb(176, 16, 16) ;
+    color:#e6ad3e ;
     font-size:12px;
     text-align: start;
     margin-bottom:5px;
@@ -65,8 +65,10 @@
   
     
   .btn-login, .btn-register{
-    background-color: #004d28;
-    border-color:#004d28 ;
+    background-color: white;
+    border-color:white ;
+    color:#004d28;
+    font-weight: bold;
   }
   
   

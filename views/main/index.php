@@ -97,7 +97,7 @@ $programs = $data->fetch();
                   <div class="card-body">
                   <iframe id="pdfViewer" src="../../reportPDF/generatePDF.php?name=
                     &program=&studentCtrlNo=&embedded=true" 
-                      width="100%" height="427" style="border: none;"></iframe>
+                      width="100%" height="427" style="border: none;" ></iframe>
 
                   </div>
                 </div>
@@ -257,6 +257,7 @@ $(document).on("click", "#save", function() {
                 url  = '../../reportPDF/generatePDF.php?name=' + '' + '&program=' + '' + '&studentCtrlNo=' + '' ;
                 $('#pdfViewer').attr("src",url);
                 success('Data Added Successfully!');
+                document.getElementById("save").disabled = true
               }
               else{
                   alert(data);

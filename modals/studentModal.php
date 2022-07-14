@@ -1,7 +1,5 @@
 <?php
-include('../../model/programModel.php');
-$data = new Program();
-$programs = $data->fetch();
+
 ?>
 <!-- Print Modal content -->
 <div id="printModal" class="modal" >
