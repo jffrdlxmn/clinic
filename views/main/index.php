@@ -12,6 +12,7 @@ $programs = $data->fetch();
   <meta charset="utf-8">
   <meta name="viewport"  http-equiv="Content-Type" content="width=device-width, initial-scale=1">
   <title>Clinic</title>
+  <link rel="icon" href="../../dist/img/AdminLTELogo.png">
   
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -272,6 +273,7 @@ $(document).on("click", "#save", function() {
                 jQuery('#counterFetch').load('counter.php', 'f' + (Math.random()*100000));
                 $('#name').val('');
                 $('#program').val(0);
+                $('#healthStatus').val(0);
                 url  = '../../reportPDF/generatePDF.php?name=' + '' + '&program=' + '' + '&studentCtrlNo=' + '' + '&healthStatus=' + '' ;
                 $('#pdfViewer').attr("src",url);
                 success('Data Added Successfully!');

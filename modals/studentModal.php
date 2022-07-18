@@ -10,7 +10,7 @@
 			<div class="card-body">
 				<span class="close mb-3" onclick="closebtn()">&times;</span>
 				<iframe id="pdfViewer" src="../../reportPDF/generatePDF.php?name=
-				&program=&studentCtrlNo=&embedded=true" 
+				&program=&studentCtrlNo=&healthStatus=&embedded=true" 
 				width="100%" height="427" style="border: none;"></iframe>
 
 			</div>
@@ -33,8 +33,9 @@
 						<input hidden id="updateStudentId" name="updateStudentId" type="text" class="form-control mb-1">
 						<input hidden id="originalName" name="originalName" type="text" class="form-control mb-1">
 						<input hidden id="originalProgram" name="originalProgram" type="text" class="form-control mb-1">
+						<input hidden id="originalHealthStatus" name="originalHealthStatus" type="text" class="form-control mb-1">
 
-						<small>Student Control no.</small>
+						<small>Control no.</small>
 						<input  id="UpdateStudentCtrlNo" name="UpdateStudentCtrlNo" type="text" class="form-control mb-1" disabled>
 						<small>Name</small>
 						<input  id="updateStudentName" name="updateStudentName" type="text" class="form-control mb-1" autocomplete="off" oninput="this.value = this.value.toUpperCase()">
@@ -52,6 +53,19 @@
                           ?>
 
                         </select>
+						</div>
+						<small ><b>Health Status</b></small>
+						<div class="rounded" style="border: 0.5px solid #004d28">
+							<select name="updateHealthStatus" class="form-control" id="updateHealthStatus">
+							<option value="0" selected disabled>Select Health Status</option>
+							<option value="FIT">FIT</option>
+							<option value="UNFIT">UNFIT</option>
+							
+
+							</select>
+						</div>
+
+						
 						
 					
 

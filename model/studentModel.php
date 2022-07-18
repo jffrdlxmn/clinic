@@ -43,32 +43,34 @@
 			return $data;
         }
 
-        function save($name,$program,$studentCtrlNo,$healthStatus){
+        function save($name,$program,$studentCtrlNo,$healthStatus,$date){
 			$addData=[];
 			$addData=[
 				'name'=>$name,
 				'program'=>$program,
 				'studentCtrlNo'=>$studentCtrlNo,
 				'healthStatus'=> $healthStatus,
+				'date'=> $date
 			];
-            $sql = "INSERT INTO student(`fullname`,`programId`,`studentCtrlNo`,`healthStatus`)
-			VALUES (:name,:program,:studentCtrlNo,:healthStatus)";
+            $sql = "INSERT INTO student(`fullname`,`programId`,`studentCtrlNo`,`healthStatus`,`date`)
+			VALUES (:name,:program,:studentCtrlNo,:healthStatus,:date)";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($addData);
 			if($stmt) return 1;
 			else return 0;
 		}
 
-		function update($id,$studentName,$programId){
+		function update($id,$studentName,$programId,$healthStatus,$date){
             $updateData=[];
 			$updateData=[
 				'id'=>$id,
 				'studentName'=>$studentName,
-				'programId'=>$programId
-
+				'programId'=>$programId,
+				'healthStatus'=>$healthStatus,
+				'date'=> $date
 			];
 	
-			$sql = "UPDATE student SET `fullname`=:studentName,`programId`=:programId
+			$sql = "UPDATE student SET `fullname`=:studentName,`programId`=:programId,`healthStatus`=:healthStatus,`date`=:date
 			WHERE `id`=:id";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($updateData);

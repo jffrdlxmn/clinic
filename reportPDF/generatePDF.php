@@ -78,7 +78,7 @@ $spaces = 33;
 
 $pdf->Ln(9);
 $pdf->SetFont('times','B',6);
-$pdf->Cell(120,5,'Student No.',0,0,'R');
+$pdf->Cell(120,5,'Control No.',0,0,'R');
 $pdf->SetFont('times','',6);
 $pdf->Cell(30,5,$_GET['studentCtrlNo'],0,0,'L');
 $pdf->Ln(13);
@@ -89,7 +89,7 @@ $pdf->Cell(55,5,'This is to certify that I have personally seen/examined ',0,0,0
 $pdf->SetFont('times','B',7);
 $pdf->Cell(55,4,ucwords(strtoupper($_GET['name'])),'B',0,'C');
 $pdf->SetFont('times','',7);
-$pdf->Cell(12,5,'and found him/her','',0,0);
+$pdf->Cell(20,5,'and found him/her','',0,0);
 
 
 $pdf->Ln(4);
@@ -112,7 +112,7 @@ if($_GET['healthStatus'] == 'UNFIT')
 
 $pdf->Cell(10,5,'program,','',0,'');
 $pdf->Ln(4);
-$pdf->Cell(5,5,'','',0,0);
+$pdf->Cell(6,5,'','',0,0);
 $pdf->Cell(65,5,'recomended to shift to another course.','',0,'');
 $spaces = 29;
 }
@@ -125,7 +125,7 @@ else{
 
 $pdf->Ln($spaces);
 $pdf->SetFont('times','B',6);
-$pdf->Cell(120,5,'Student No.',0,0,'R');
+$pdf->Cell(120,5,'Control No.',0,0,'R');
 $pdf->SetFont('times','',6);
 $pdf->Cell(30,5,$_GET['studentCtrlNo'],0,0,'L');
 $pdf->Ln(13);
@@ -138,7 +138,7 @@ $pdf->Cell(55,5,'This is to certify that I have personally seen/examined ',0,0,0
 $pdf->SetFont('times','B',7);
 $pdf->Cell(55,4,ucwords(strtoupper($_GET['name'])),'B',0,'C');
 $pdf->SetFont('times','',7);
-$pdf->Cell(12,5,'and found him/her','',0,0);
+$pdf->Cell(20,5,'and found him/her','',0,0);
 
 $pdf->Ln(4);
 $pdf->SetFont('times','',7);
@@ -149,7 +149,7 @@ $pdf->SetFont('times','B',7);
 $pdf->Cell(10,4,$_GET['healthStatus'],'B',0,'C');
 $pdf->SetFont('times','',7);
 $pdf->Cell(17,5,'to enroll on the','',0,0);
-$pdf->SetFont('times','B',7);
+$pdf->SetFont('times','B',6);
 $pdf->Cell(65,4,ucwords(strtoupper($program)),'B',0,'C');
 $pdf->SetFont('times','',7);
 
@@ -159,7 +159,7 @@ if($_GET['healthStatus'] == 'UNFIT')
 
 $pdf->Cell(10,5,'program,','',0,'');
 $pdf->Ln(4);
-$pdf->Cell(5,5,'','',0,0);
+$pdf->Cell(6,5,'','',0,0);
 $pdf->Cell(65,5,'recomended to shift to another course.','',0,'');
 }
 else{

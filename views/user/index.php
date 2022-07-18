@@ -14,7 +14,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -55,15 +55,15 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Program</h1>
-        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add program</button>
+        <h1 class="text-success text-center">Users</h1>
+        <button class="btn btn-success rounded-10 mb-2" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add User</button>
 
         <!-- DATA TABLE -->
-            <div id="programFetch"></div>
+            <div id="userFetch"></div>
         <!-- END DATA TABLE -->
 
         <!-- MODALS -->
-        <?php include('../../modals/programModal.php'); ?>
+        <?php include('../../modals/userModal.php'); ?>
         <!-- END MODALS -->
         
        
@@ -116,7 +116,7 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 <!-- Sweet Alert -->
@@ -124,10 +124,33 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
 
 <script>
- jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
+ jQuery('#userFetch').load('fetch.php', 'f' + (Math.random()*100000));
 </script>
 
 <script>
+
+
+  $('#addShowPass').on('click', function(){
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var passInput=$("#addPassword");
+      if(passInput.attr('type')==='password')
+        {
+          passInput.attr('type','text');
+      }else{
+         passInput.attr('type','password');
+      }
+  })
+
+  $('#updateShowPass').on('click', function(){
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var passInput=$("#newPassword");
+      if(passInput.attr('type')==='password')
+        {
+          passInput.attr('type','text');
+      }else{
+         passInput.attr('type','password');
+      }
+  })
 
   var addModal = document.getElementById("addModal");
   function openAddModal()
@@ -135,20 +158,35 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
     addModal.style.display = "block";
   }
 
-  $(document).on("click", "#addProgramBtn", function() { 
+  $(document).on("click", "#addUser", function() { 
+  if($('#addPassword').val() =="" || $('#addConfirmPassword').val() == "" ||  $('#addUsername').val() =="")
+  {
+    warningfunction('Please fill up all required Field!');
+    return false;   
+  }
+  
   $.ajax({
       url: "checkExist.php",
       type: "POST",
       cache: false,
       data:{
-        program: $('#addProgram').val(),
+        username: $('#addUsername').val(),
       },
-      success: function(programData){
-          if(programData == 1)
+      success: function(userCheckData){
+          if(userCheckData == 1)
           {
-            warningfunction('Already exist!');   
+            warningfunction('Already exist!');
+            return false;   
           }
           else{
+            if($('#addPassword').val() != $('#addConfirmPassword').val())
+            {
+              warningfunction('Password and Confirm password does not match!');
+              $('#addPassword').val("");
+              $('#addConfirmPassword').val("");
+              return false;   
+            }
+            
             const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success m-1 ',
@@ -171,16 +209,15 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
                     type: "POST",
                     cache: false,
                     data:{
-                      program: $('#addProgram').val(),
+                      username: $('#addUsername').val(),
+                      password: $('#addPassword').val(),
                     },
                     success: function(data){  
                         if(data == 1)
                         {
                             success('Data Added successfully!');
                             addModal.style.display = "none";
-                            $('#addProgram').val('');
-                            jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
-
+                            jQuery('#userFetch').load('fetch.php', 'f' + (Math.random()*100000));
 
                         }
                         else{
@@ -199,136 +236,75 @@ if(!isset($_SESSION["username"])){ header("location:../../views/auth/"); }
 
 
 
-
 var updateModal = document.getElementById("updateModal");
-function openUpdateModal(id,program)
+function openUpdateModal(id,username)
 {
   updateModal.style.display = "block";
-  document.getElementById("updateProgramId").value=id;
-  document.getElementById("updateProgramName").value=program;
-  document.getElementById("originalProgram").value=program;
+  document.getElementById("userId").value=id;
+  document.getElementById("updateUsername").value=username;
+
 }
 
+$(document).on("click", "#changePassword", function() { 
+  if($('#newPassword').val() == "" || $('#confirmPassword').val() == "")
+  {
+    warningfunction('Please fill up all required field!');
+    return false;
+  }
 
-$(document).on("click", "#updateProgramBtn", function() { 
-
-if($('#originalProgram').val() == $('#updateProgramName').val() 
-)
-{
-  warningfunction('No changes!');
-  return false;
-}
-
-$.ajax({
-    url: "checkExist.php",
-    type: "POST",
-    cache: false,
-    data:{
-      program: $('#updateProgramName').val(),
-    },
-    success: function(programData){
-      if(programData == 1)
-      {
-        warningfunction('Already exist!');   
-      }
-      else{
-        const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success m-1 ',
-            cancelButton: 'btn btn-danger '
-        },
-        buttonsStyling: false
-        })
-        swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "you want to update this data?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Confirm',
-        cancelButtonText: 'Cancel   ',
-        reverseButtons: true
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "update.php",
-                type: "POST",
-                cache: false,
-                data:{
-                  programId: $('#updateProgramId').val(),
-                  programName: $('#updateProgramName').val(),
-                },
-                success: function(data){
-                    if(data == 1)
-                    {
-                        success('Data updated successfully!');
-                        updateModal.style.display = "none";
-                        jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
-                    }
-                    else{
-                        alert(data);
-                        errorfunction('Data Updating Failed!');
-                    }
-                }
-            });
-        }   
-        else if (result.dismiss === Swal.DismissReason.cancel){}
-        })   
-      }       
-    }
-});   	
-});
-     
-
-   	
+  if($('#newPassword').val() != $('#confirmPassword').val())
+  {
+    $('#newPassword').val("");
+    $('#confirmPassword').val("");
+    warningfunction('Password and confirm password does not match!');
+    return false;
+  }
 
 
-
-function Delete(id)
-{
   const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-success m-1 ',
-        cancelButton: 'btn btn-danger '
-    },
-    buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "you want to delete this data?",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Confirm',
-    cancelButtonText: 'Cancel   ',
-    reverseButtons: true
-    }).then((result) => {
-    if (result.isConfirmed) {
-          $.ajax({
-            url: "delete.php",
-            type: "POST",
-            cache: false,
-            data:{
-              programId: id,
-            },
-            success: function(data){
-                if(data == 1)
-                {
-                  success('Data Deleted successfully!');
-                  jQuery('#programFetch').load('fetch.php', 'f' + (Math.random()*100000));
-                }
-                else{
-                    alert(data);
-                    errorfunction('Data Deleting Failed!');
-                }
-            }
-        });
-    }   
-      else if (result.dismiss === Swal.DismissReason.cancel){}
+  customClass: {
+      confirmButton: 'btn btn-success m-1 ',
+      cancelButton: 'btn btn-danger '
+  },
+  buttonsStyling: false
   })
-}
+  swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "you want to update this data?",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  cancelButtonText: 'Cancel   ',
+  reverseButtons: true
+  }).then((result) => {
+  if (result.isConfirmed) {
+      $.ajax({
+          url: "update.php",
+          type: "POST",
+          cache: false,
+          data:{
+            id: $('#userId').val(),
+            newPassword: $('#newPassword').val()
+          },
+          success: function(data){
 
-
-
-
+              if(data == 1)
+              {
+                  success('Data updated successfully!');
+                  updateModal.style.display = "none";
+                  jQuery('#Fetch').load('fetch.php', 'f' + (Math.random()*100000));
+              }
+              else{
+                  alert(data);
+                  errorfunction('Data Updating Failed!');
+              }
+          }
+      });
+  }   
+  else if (result.dismiss === Swal.DismissReason.cancel){}
+  })    	
+});
+   	
 // When the user clicks button close
 function closebtn() 
 {

@@ -50,6 +50,12 @@
                   <p>Program</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../../views/user/" class="nav-link">
+                  <i class="fa fa-user nav-icon"></i>
+                  <p>Accounts</p>
+                </a>
+              </li>
              
               
               </li>

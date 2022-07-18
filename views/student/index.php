@@ -11,6 +11,7 @@ $programs = $data->fetch();
   <meta charset="utf-8">
   <meta name="viewport"  http-equiv="Content-Type" content="width=device-width, initial-scale=1">
   <title>Clinic</title>
+  <link rel="icon" href="../../dist/img/AdminLTELogo.png">
   
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -59,13 +60,11 @@ $programs = $data->fetch();
     <section class="content">
       <div class="container-fluid">
         <h1 class="text-success text-center">Student</h1>
-        
-        <div class="float-left">
-        <button type="button"  onclick="getListOfStudents();" class="btn btn-success btn-sm ml-2" style="height:35px;"><i class="fa fa-print" aria-hidden="true"></i> PRINT</button>
-        </div>
-        <div class="float-right">
+      
+        <div>
+        <div class="float-right  mt-5 ml-2">
           <div class="rounded" style="border: 0.5px solid #004d28;">
-            <select name="selectProgram" class="form-control" id="selectProgram" style="height:33px;">
+            <select name="selectProgram" class="form-control" id="selectProgram" style="height:35px;">
 
             <option value="0" selected disabled>Select Program</option>
             <option value="All">All</option>
@@ -80,10 +79,24 @@ $programs = $data->fetch();
             </select>
           </div>
         </div>
+ 
+        <div class="float-left mt-5">
+          <div class="w-100">
+          <button type="button"  onclick="getListOfStudents();" class="btn btn-success btn-sm ml-2" style="height:35px;"><i class="fa fa-print" aria-hidden="true"></i> PRINT</button>
+       
+          </div>
+       
+        </div>
+        </div>
+        
+       
+         
         
 
 
         <!-- DATA TABLE -->
+            </br>
+            </br>
             <div id="studentFetch"></div>
         <!-- END DATA TABLE -->
       
@@ -151,17 +164,21 @@ $programs = $data->fetch();
 <script src="../../dist/sweetalert/sweet_alert.js"></script>
 
 <script>
- jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
+  jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
+
+  setInterval(function() {
+    jQuery('#studentFetch').load('fetch.php', 'f' + (Math.random()*100000));
+  }, 30000);
 </script>
 
 <script>
 
  
 var printModal = document.getElementById("printModal");
-function openPrintModal(name,program,studentCtrlNo)
+function openPrintModal(name,program,studentCtrlNo,healthStatus)
 {
   printModal.style.display = "block";
-  url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo ;
+  url  = '../../reportPDF/generatePDF.php?name=' + name + '&program=' + program + '&studentCtrlNo=' + studentCtrlNo + '&healthStatus=' + healthStatus;
     $('#pdfViewer').attr("src",url);
  
 }
@@ -176,21 +193,26 @@ function getListOfStudents()
 
 
 var updateModal = document.getElementById("updateModal");
-function openUpdateModal(id,name,program,studentCtrlNo)
+function openUpdateModal(id,name,program,studentCtrlNo,healthStatus)
 {
   updateModal.style.display = "block";
   document.getElementById("updateStudentId").value=id;
   document.getElementById("originalProgram").value=program;
   document.getElementById("originalName").value=name;
+  document.getElementById("originalHealthStatus").value=healthStatus;
+
   document.getElementById("updateStudentName").value=name;
   document.getElementById("updateStudentProgram").value=program;
   document.getElementById("UpdateStudentCtrlNo").value=studentCtrlNo;
+  document.getElementById("updateHealthStatus").value=healthStatus;
 }
 
 
 $(document).on("click", "#updateStudentBtn", function() { 
 
-if($('#originalProgram').val() == $('#updateStudentProgram').val() && $('#originalName').val() == $('#updateStudentName').val())
+if($('#originalProgram').val() == $('#updateStudentProgram').val() && $('#originalName').val() == $('#updateStudentName').val() &&
+$('#originalHealthStatus').val() == $('#updateHealthStatus').val()
+)
 {
   warningfunction('No changes!');
   return false;
@@ -220,7 +242,8 @@ const swalWithBootstrapButtons = Swal.mixin({
           data:{
             id: $('#updateStudentId').val(),
             name: $('#updateStudentName').val(),
-            programId: $('#updateStudentProgram').val()
+            programId: $('#updateStudentProgram').val(),
+            healthStatus: $('#updateHealthStatus').val()
           },
           success: function(data){
               if(data == 1)
